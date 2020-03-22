@@ -1,7 +1,0 @@
-C:\Users\allar\source\repos\MovieApi\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.deps.json
-C:\Users\allar\source\repos\MovieApi\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.dll
-C:\Users\allar\source\repos\MovieApi\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.pdb
-C:\Users\allar\source\repos\MovieApi\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.AssemblyInfoInputs.cache
-C:\Users\allar\source\repos\MovieApi\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.AssemblyInfo.cs
-C:\Users\allar\source\repos\MovieApi\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.dll
-C:\Users\allar\source\repos\MovieApi\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.pdb
