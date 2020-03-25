@@ -11,21 +11,14 @@ using System.Net.Http.Headers;
 
 namespace Services.Movie
 {
-    public class MovieService : IMovieService
+    public class MovieService : BaseHttpService, IMovieService
     {
-        public HttpClient Client { get; private set; }
-
-        public MovieService(HttpClient httpClient)
+        public MovieService(HttpClient client) 
+            : base(client)
         {
-            httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
 
-            httpClient.BaseAddress = new Uri("https://api.themoviedb.org/");
-            httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzOWM1MTlmMjA2MTc1NjBkNDY3Y2U5NTA4NzcyM2UyMSIsInN1YiI6IjVlNjM0OTU1MjJhZjNlMDAxM2RlZDEzYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.D53nmvOUFC6BwoO6OJriURGHD2cjgovODr4k_JD3p1I");
-            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));//ACCEPT header
-
-            Client = httpClient;
         }
-
+        
         public async Task<MovieResultSelection> GetPopularMovies()
         {
             var response = await Client.GetAsync("3/movie/popular").ConfigureAwait(false);

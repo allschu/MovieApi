@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Services.Cast;
+using Services.Cast.Interfaces;
 using Services.Movie;
 using Services.Movie.Interfaces;
 
@@ -35,6 +37,7 @@ namespace MovieApi
         {
             services.AddControllers();
             services.AddHttpClient<IMovieService, MovieService>();
+            services.AddHttpClient<ICastService, CastService>();
 
         }
 

@@ -6,8 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Cast\Commands\" />
-    <Folder Include="Cast\Handlers\" />
-    <Folder Include="Cast\Queries\" />
     <Folder Include="Movie\Commands\" />
   </ItemGroup>
 
