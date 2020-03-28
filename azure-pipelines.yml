@@ -51,5 +51,5 @@ steps:
     deployToSlotOrASE: true
     resourceGroupName: 'MovieApi-dev-rg'
     slotName: 'production'
-    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    package: 'D:\a\1\a\*.zip'
     deploymentMethod: 'auto'
