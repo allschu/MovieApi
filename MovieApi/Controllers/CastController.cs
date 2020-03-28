@@ -13,14 +13,14 @@ namespace MovieApi.Controllers
     {
         // GET: api/Cast
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<string> GetCasts()
         {
             return new string[] { "value1", "value2" };
         }
 
         // GET: api/Cast/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet("{id}", Name = "GetCast")]
+        public string GetCast(int id)
         {
             return "value";
         }
