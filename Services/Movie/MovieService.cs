@@ -33,14 +33,32 @@ namespace Services.Movie
             return JsonConvert.DeserializeObject<MovieResultSelection>(content);
         }
 
-        public Task<MovieSelection> GetMovie(int id)
+        public async Task<MovieSelection> GetMovie(int id)
         {
-            throw new NotImplementedException();
+            var response = await Client.GetAsync($"3/movie/{id}").ConfigureAwait(false);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                // throw error / or insert circuitbreaker?
+            }
+
+            var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+            return JsonConvert.DeserializeObject<MovieSelection>(content);
         }
 
-        public Task<MovieSelection[]> GetMovieRecommendations(int id)
+        public async Task<MovieResultSelection> GetMovieRecommendations(int id)
         {
-            throw new NotImplementedException();
+            var response = await Client.GetAsync($"3/movie/{id}/recommendations").ConfigureAwait(false);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                // throw error / or insert circuitbreaker?
+            }
+
+            var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+            return JsonConvert.DeserializeObject<MovieResultSelection>(content);
         }
 
         public Task<MovieSelection[]> GetTrendingMovies()

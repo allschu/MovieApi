@@ -12,7 +12,7 @@ namespace Services.Movie.Interfaces
 
         public Task<MovieSelection> GetMovie(int id);
 
-        public Task<MovieSelection[]> GetMovieRecommendations(int id);
+        public Task<MovieResultSelection> GetMovieRecommendations(int id);
 
         public Task<MovieSelection[]> GetTrendingMovies();
     }
