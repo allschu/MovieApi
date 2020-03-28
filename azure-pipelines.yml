@@ -35,13 +35,13 @@ steps:
     arguments: '--no-build --configuration $(buildConfiguration)'
     publishTestResults: true
 
-- task: AzureRmWebAppDeployment@4
+- task: AzureWebApp@1
   inputs:
-    ConnectionType: 'AzureRM'
     azureSubscription: 'Visual Studio Enterprise – MPN (a6d42328-7715-43e7-ab78-eca623de5fac)'
     appType: 'webApp'
-    WebAppName: 'MovieApi-dev-as'
+    appName: 'MovieApi-dev-as'
     deployToSlotOrASE: true
-    ResourceGroupName: 'MovieApi-dev-rg'
-    SlotName: 'production'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    resourceGroupName: 'MovieApi-dev-rg'
+    slotName: 'production'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    deploymentMethod: 'auto'
