@@ -1,4 +1,5 @@
 ﻿using Application.Movie.Models;
+using Application.Movie.Models.Extensions;
 using Application.Movie.Queries;
 using MediatR;
 using Services.Movie.Interfaces;
@@ -19,9 +20,13 @@ namespace Application.Movie.Handlers
             this.movieService = movieService ?? throw new ArgumentNullException(nameof(movieService));
         }
 
-        public Task<ICollection<MovieViewModel>> Handle(GetMovieRecommendationsQuery request, CancellationToken cancellationToken)
+        public async Task<ICollection<MovieViewModel>> Handle(GetMovieRecommendationsQuery request, CancellationToken cancellationToken)
         {
-            
+            request = request ?? throw new ArgumentNullException(nameof(request));
+
+            var movie = await this.movieService.GetMovieRecommendations(request.MovieId).ConfigureAwait(false);
+
+            return movie.MapToViewModel();
         }
     }
 }

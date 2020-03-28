@@ -67,6 +67,20 @@ namespace Tests
             Assert.AreNotEqual(string.Empty, result.Title, "the test faulted because there is not string value in the title field");
         }
 
+        [TestMethod]
+        public async Task GetMovieRecommendationsQueryTest()
+        {
+            using var scope = serviceProvider.CreateScope();
+            var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
+
+            Assert.IsNotNull(mediator, "mediator cannot be resolved by DI");
+
+            var result = await mediator.Send(new GetMovieRecommendationsQuery(338762)).ConfigureAwait(false);
+
+            Assert.IsNotNull(result, "there is no result for get movie recommendations by ID");
+            Assert.IsTrue(result.Any());
+        }
+
 
     }
 }
