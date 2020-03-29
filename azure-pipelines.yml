@@ -34,3 +34,19 @@ steps:
     command: 'test'
     arguments: '--no-build --configuration $(buildConfiguration)'
     publishTestResults: true
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
+
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'Visual Studio Enterprise – MPN (a6d42328-7715-43e7-ab78-eca623de5fac)'
+    appType: 'webApp'
+    appName: 'MovieApi-dev-as'
+    deployToSlotOrASE: true
+    resourceGroupName: 'MovieApi-dev-rg'
+    slotName: 'production'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    deploymentMethod: 'auto'
