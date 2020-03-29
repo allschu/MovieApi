@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Application.Movie.Handlers
 {
-    public class GetPopularMoviesQueryHandler : IRequestHandler<GetPopularMoviesQuery, ICollection<MovieViewModel>>
+    public class GetPopularMoviesQueryHandler : IRequestHandler<GetPopularMoviesQuery, MovieGridResult>
     {
         private readonly IMovieService movieService;
 
@@ -20,11 +20,15 @@ namespace Application.Movie.Handlers
             this.movieService = movieService ?? throw new ArgumentNullException(nameof(movieService));
         }
 
-        public async Task<ICollection<MovieViewModel>> Handle(GetPopularMoviesQuery request, CancellationToken cancellationToken)
+        public async Task<MovieGridResult> Handle(GetPopularMoviesQuery request, CancellationToken cancellationToken)
         {
-            var movies = await movieService.GetPopularMovies().ConfigureAwait(false);
+            var movies = await movieService.GetPopularMovies(request.Filter.Page).ConfigureAwait(false);
 
-            return movies.MapToViewModel();
+            return new MovieGridResult
+            {
+                Results = movies.MapToViewModel(),
+                Total_Results = movies.Total_Results
+            };
         }
     }
 }

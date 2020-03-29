@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Application.Movie.Queries
 {
-    public class GetPopularMoviesQuery : IRequest<ICollection<MovieViewModel>>
+    public class GetPopularMoviesQuery : IRequest<MovieGridResult>
     {
         public GetPopularMoviesFilter Filter { get; private set; }
 

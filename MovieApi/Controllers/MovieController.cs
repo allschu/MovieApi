@@ -25,11 +25,12 @@ namespace MovieApi.Controllers
 
         // GET: api/Movie
         [HttpGet]
-        public async Task<ActionResult<GetMovieResponse>> GetMovies()
+        [Route("popular/{page:int}")]
+        public async Task<ActionResult<GetMovieResponse>> GetMovies(int page)
         {
-            var movies = await _mediator.Send(new GetPopularMoviesQuery(new GetPopularMoviesFilter())).ConfigureAwait(false);
+            var movies = await _mediator.Send(new GetPopularMoviesQuery(new GetPopularMoviesFilter(page))).ConfigureAwait(false);
 
-            return new GetMovieResponse(movies.Map());
+            return new GetMovieResponse(movies.Results.Map(), movies.Total_Results);
         }
 
         // GET: api/Movie/5

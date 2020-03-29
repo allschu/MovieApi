@@ -19,9 +19,9 @@ namespace Services.Movie
 
         }
         
-        public async Task<MovieResultSelection> GetPopularMovies()
+        public async Task<MovieResultSelection> GetPopularMovies(int page)
         {
-            var response = await Client.GetAsync("3/movie/popular").ConfigureAwait(false);
+            var response = await Client.GetAsync($"3/movie/popular?page={page}").ConfigureAwait(false);
 
             if (!response.IsSuccessStatusCode)
             {

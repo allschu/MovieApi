@@ -40,6 +40,10 @@ namespace MovieApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddCors(x =>
+            {
+                x.AddDefaultPolicy(c => c.AllowAnyOrigin());
+            });
 
             services.AddMediatR(typeof(GetPopularMoviesQuery).GetTypeInfo().Assembly);
             services.AddHttpClient<IMovieService, MovieService>();
@@ -64,7 +68,7 @@ namespace MovieApi
             app.UseHttpsRedirection();
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
-
+            app.UseCors();
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>

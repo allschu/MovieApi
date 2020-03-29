@@ -47,10 +47,11 @@ namespace Tests
 
             Assert.IsNotNull(mediator, "mediator cannot be resolved by DI");
 
-            var result = await mediator.Send(new GetPopularMoviesQuery(new GetPopularMoviesFilter())).ConfigureAwait(false);
+            var result = await mediator.Send(new GetPopularMoviesQuery(new GetPopularMoviesFilter(2))).ConfigureAwait(false);
 
-            Assert.IsTrue(result.Any());
-            Assert.AreEqual(20, result.Count());
+            Assert.IsTrue(result.Results.Any());
+            Assert.AreNotSame(0, result.Total_Results);
+            Assert.AreEqual(20, result.Results.Count());
         }
 
         [TestMethod]

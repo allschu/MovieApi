@@ -14,7 +14,7 @@ namespace MovieApi.Models.ViewModels
         public bool Adult { get; set; }
         public bool Video { get; set; }
         public string Orginal_Title { get; set; }
-        public DateTime Release_Date { get; set; }
+        public string Release_Date { get; set; }
         public string Original_Language { get; set; }
         public string Overview { get; set; }
     }

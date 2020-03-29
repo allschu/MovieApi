@@ -41,7 +41,7 @@ namespace Tests
 
             Assert.IsNotNull(movieService, "IMovieService cannot be resolved by DI");
 
-            var result = await movieService.GetPopularMovies();
+            var result = await movieService.GetPopularMovies(3);
 
             Assert.IsNotNull(result, "There is no result from the populair movie service request");
             Assert.IsNotNull(result.results, "There is no result from the populair movie service request");

@@ -8,7 +8,7 @@ namespace Services.Movie.Interfaces
 {
     public interface IMovieService
     {
-        public Task<MovieResultSelection> GetPopularMovies();
+        public Task<MovieResultSelection> GetPopularMovies(int page);
 
         public Task<MovieSelection> GetMovie(int id);
 
