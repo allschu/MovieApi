@@ -43,5 +43,5 @@ steps:
     deployToSlotOrASE: true
     resourceGroupName: 'MovieApi-dev-rg'
     slotName: 'production'
-    package: '$(System.DefaultWorkingDirectory)\MovieApi'
+    package: '$(System.DefaultWorkingDirectory)\MovieApi\bin\Release\netcoreapp3.1'
     deploymentMethod: 'auto'
