@@ -40,7 +40,7 @@ steps:
     rootFolderOrFile: '$(Build.BinariesDirectory)'
     includeRootFolder: true
     archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    archiveFile: 'D:/a/1/a/$(Build.BuildId).zip'
     replaceExistingArchive: true
 
 - task: AzureWebApp@1
