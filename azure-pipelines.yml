@@ -35,21 +35,21 @@ steps:
     arguments: '--no-build --configuration $(buildConfiguration)'
     publishTestResults: true
 
-- task: ArchiveFiles@2
+# do this after other tasks such as building
+- task: DotNetCoreCLI@2
   inputs:
-    rootFolderOrFile: '$(Build.BinariesDirectory)'
-    includeRootFolder: true
-    archiveType: 'zip'
-    archiveFile: 'D:/a/1/a/$(Build.BuildId).zip'
-    replaceExistingArchive: true
+    command: test
+    arguments: '--configuration $(buildConfiguration) --collect "Code coverage"'
 
-- task: AzureWebApp@1
+- task: DotNetCoreCLI@2
   inputs:
-    azureSubscription: 'Visual Studio Enterprise – MPN (a6d42328-7715-43e7-ab78-eca623de5fac)'
-    appType: 'webApp'
-    appName: 'MovieApi-dev-as'
-    deployToSlotOrASE: true
-    resourceGroupName: 'MovieApi-dev-rg'
-    slotName: 'production'
-    package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    deploymentMethod: 'auto'
+    command: publish
+    publishWebProjects: True
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: True
+
+# this code takes all the files in $(Build.ArtifactStagingDirectory) and uploads them as an artifact of your build.
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
+    artifactName: 'MovieApi'
