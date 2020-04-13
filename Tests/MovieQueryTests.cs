@@ -65,7 +65,7 @@ namespace Tests
             var result = await mediator.Send(new GetMovieByIdQuery(338762)).ConfigureAwait(false);
 
             Assert.IsNotNull(result, "there is no result for getmovie by ID");
-            Assert.AreNotEqual(string.Empty, result.Title, "the test faulted because there is not string value in the title field");
+            Assert.AreNotEqual(string.Empty, result.title, "the test faulted because there is not string value in the title field");
         }
 
         [TestMethod]

@@ -33,7 +33,7 @@ namespace Services.Movie
             return JsonConvert.DeserializeObject<MovieResultSelection>(content);
         }
 
-        public async Task<MovieSelection> GetMovie(int id)
+        public async Task<MovieDetail> GetMovie(int id)
         {
             var response = await Client.GetAsync($"3/movie/{id}").ConfigureAwait(false);
 
@@ -44,7 +44,7 @@ namespace Services.Movie
 
             var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-            return JsonConvert.DeserializeObject<MovieSelection>(content);
+            return JsonConvert.DeserializeObject<MovieDetail>(content);
         }
 
         public async Task<MovieResultSelection> GetMovieRecommendations(int id)

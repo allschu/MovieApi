@@ -15,7 +15,7 @@ namespace Services.Models
         public string Status { get; set; }
         public string Tagline { get; set; }
         public string Title { get; set; }
-        public int Vote_Average { get; set; }
+        public double Vote_Average { get; set; }
         public int Vote_Count { get; set; }
         public int Revenue { get; set; }
         public string Poster_path { get; set; }

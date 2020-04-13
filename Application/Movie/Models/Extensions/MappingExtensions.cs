@@ -2,12 +2,32 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Text;
 
 namespace Application.Movie.Models.Extensions
 {
     public static class MappingExtensions
     {
+        internal static MovieDetailViewModel MapToViewModel(this MovieDetail selection)
+        {
+            return new MovieDetailViewModel
+            {
+                id = selection.Id,
+                original_title = selection.Original_Title,
+                overview = selection.Overview,
+                popularity = selection.Popularity,
+                poster_path = selection.Poster_path,
+                release_date = selection.Release_date,
+                revenue = selection.Revenue,
+                tagline = selection.Tagline,
+                status = selection.Status,
+                title = selection.Title,
+                vote_average = selection.Vote_Average,
+                vote_count = selection.Vote_Count
+            };
+        }
+        
         internal static ICollection<MovieViewModel> MapToViewModel(this MovieResultSelection selection)
         {
             return selection.results.Select(x => x.MapToViewModel()).ToList();

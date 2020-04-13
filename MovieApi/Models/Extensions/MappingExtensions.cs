@@ -9,6 +9,25 @@ namespace MovieApi.Models.Extensions
 {
     public static class MappingExtensions
     {
+        internal static ViewModels.MovieDetailViewModel Map(this Application.Movie.Models.MovieDetailViewModel movie)
+        {
+            return new ViewModels.MovieDetailViewModel
+            {
+                id = movie.id,
+                original_title = movie.original_title,
+                overview = movie.overview,
+                popularity = movie.popularity,
+                poster_path = movie.poster_path,
+                release_date = movie.release_date,
+                revenue = movie.revenue,
+                tagline = movie.tagline,
+                status = movie.status,
+                title = movie.title,
+                vote_average = movie.vote_average,
+                vote_count = movie.vote_count
+            };
+        }
+        
         internal static ViewModels.MovieViewModel Map(this Application.Movie.Models.MovieViewModel movie)
         {
             return new ViewModels.MovieViewModel

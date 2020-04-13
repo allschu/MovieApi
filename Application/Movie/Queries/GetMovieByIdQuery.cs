@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Application.Movie.Queries
 {
-    public class GetMovieByIdQuery : IRequest<MovieViewModel>
+    public class GetMovieByIdQuery : IRequest<MovieDetailViewModel>
     {
         public int MovieId { get; }
 

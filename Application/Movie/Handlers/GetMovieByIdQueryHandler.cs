@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application.Movie.Handlers
 {
-    public class GetMovieByIdQueryHandler : IRequestHandler<GetMovieByIdQuery, MovieViewModel>
+    public class GetMovieByIdQueryHandler : IRequestHandler<GetMovieByIdQuery, MovieDetailViewModel>
     {
         private readonly IMovieService movieService;
 
@@ -17,7 +17,7 @@ namespace Application.Movie.Handlers
         {
             this.movieService = movieService ?? throw new ArgumentNullException(nameof(movieService));
         }
-        public async Task<MovieViewModel> Handle(GetMovieByIdQuery request, CancellationToken cancellationToken)
+        public async Task<MovieDetailViewModel> Handle(GetMovieByIdQuery request, CancellationToken cancellationToken)
         {
             request = request ?? throw new ArgumentNullException(nameof(request));
 

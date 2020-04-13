@@ -35,7 +35,7 @@ namespace MovieApi.Controllers
 
         // GET: api/Movie/5
         [HttpGet("{id}", Name = "GetMovie")]
-        public async Task<ActionResult<MovieViewModel>> GetMovie(int id)
+        public async Task<ActionResult<MovieDetailViewModel>> GetMovie(int id)
         {
             var movie = await _mediator.Send(new GetMovieByIdQuery(id)).ConfigureAwait(false);
 
