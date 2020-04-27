@@ -45,6 +45,18 @@ namespace MovieApi.Models.Extensions
             };
         }
 
+        internal static ViewModels.CastViewModel Map(this Application.Cast.Models.CastViewModel movie)
+        {
+            return new CastViewModel
+            {
+                Int = movie.Int,
+                Character = movie.Character,
+                Name = movie.Name,
+                Order = movie.Order,
+                Profile_Path = movie.Profile_Path
+            };
+        }
+
         internal static ICollection<ViewModels.MovieViewModel> Map(this ICollection<Application.Movie.Models.MovieViewModel> movies)
         {
             return movies.Select(x => x.Map()).ToList();
@@ -53,6 +65,11 @@ namespace MovieApi.Models.Extensions
         internal static ICollection<ViewModels.MovieDetailViewModel> Map(this ICollection<Application.Movie.Models.MovieDetailViewModel> movies)
         {
             return movies.Select(x => x.Map()).ToList();
+        }
+
+        internal static ICollection<ViewModels.CastViewModel> Map(this ICollection<Application.Cast.Models.CastViewModel> cast)
+        {
+            return cast.Select(x => x.Map()).ToList();
         }
     }
 }

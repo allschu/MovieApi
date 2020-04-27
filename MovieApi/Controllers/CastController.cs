@@ -2,8 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.Cast.Queries;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MovieApi.Models;
+using MovieApi.Models.Extensions;
+using MovieApi.Models.ViewModels;
 
 namespace MovieApi.Controllers
 {
@@ -11,6 +16,12 @@ namespace MovieApi.Controllers
     [ApiController]
     public class CastController : ControllerBase
     {
+        private readonly IMediator _mediator;
+
+        public CastController(IMediator mediator)
+        {
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+        }
         // GET: api/Cast
         [HttpGet]
         public IEnumerable<string> GetCasts()
@@ -19,10 +30,12 @@ namespace MovieApi.Controllers
         }
 
         // GET: api/Cast/5
-        [HttpGet("{id}", Name = "GetCast")]
-        public string GetCast(int id)
+        [HttpGet("{movieId}", Name = "GetCast")]
+        public async Task<ActionResult<GetMovieCastResponse>> GetCast(int movieId)
         {
-            return "value";
+            var cast = await this._mediator.Send(new GetMovieCastQuery(movieId)).ConfigureAwait(false);
+
+            return new GetMovieCastResponse(movieId, cast.Map());
         }
 
         // POST: api/Cast
