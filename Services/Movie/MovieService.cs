@@ -33,6 +33,20 @@ namespace Services.Movie
             return JsonConvert.DeserializeObject<MovieResultSelection>(content);
         }
 
+        public async Task<MovieResultSelection> GetPopularMovies()
+        {
+            var response = await Client.GetAsync($"3/movie/popular").ConfigureAwait(false);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                // throw error / or insert circuitbreaker?
+            }
+
+            var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+            return JsonConvert.DeserializeObject<MovieResultSelection>(content);
+        }
+
         public async Task<MovieDetail> GetMovie(int id)
         {
             var response = await Client.GetAsync($"3/movie/{id}").ConfigureAwait(false);

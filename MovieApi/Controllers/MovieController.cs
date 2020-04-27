@@ -33,6 +33,17 @@ namespace MovieApi.Controllers
             return new GetMovieResponse(movies.Results.Map(), movies.Total_Results);
         }
 
+        [HttpPost]
+        [Route("popular")]
+        public async Task<ActionResult<GetMovieResponse>> GetMovies()
+        {
+            var pageSize = 20;
+            
+            var movies = await _mediator.Send(new GetPopularMoviesQuery()).ConfigureAwait(false);
+
+            return new GetMovieResponse(movies.Results.Map(), movies.Total_Results);
+        }
+
         // GET: api/Movie/5
         [HttpGet("{id}", Name = "GetMovie")]
         public async Task<ActionResult<MovieDetailViewModel>> GetMovie(int id)

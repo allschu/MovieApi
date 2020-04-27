@@ -2,6 +2,7 @@
 using Application.Movie.Models.Extensions;
 using Application.Movie.Queries;
 using MediatR;
+using Services.Models;
 using Services.Movie.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,19 @@ namespace Application.Movie.Handlers
 
         public async Task<MovieGridResult> Handle(GetPopularMoviesQuery request, CancellationToken cancellationToken)
         {
-            var movies = await movieService.GetPopularMovies(request.Filter.Page).ConfigureAwait(false);
+            var parameters = request ?? throw new ArgumentNullException(nameof(request));
+
+            MovieResultSelection movies = null;
+
+            if (parameters.Filter != null)
+            {
+                movies = await movieService.GetPopularMovies(parameters.Filter.Page).ConfigureAwait(false);
+            }
+            else
+            {
+                movies = await movieService.GetPopularMovies().ConfigureAwait(false);
+            }
+            
 
             return new MovieGridResult
             {

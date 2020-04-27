@@ -15,5 +15,9 @@ namespace Application.Movie.Queries
         {
             this.Filter = filter;
         }
+
+        public GetPopularMoviesQuery()
+        {
+        }
     }
 }

@@ -42,7 +42,11 @@ namespace MovieApi
             services.AddControllers();
             services.AddCors(x =>
             {
-                x.AddDefaultPolicy(c => c.AllowAnyOrigin());
+                x.AddDefaultPolicy(c =>
+                {
+                    c.AllowAnyOrigin();
+                    c.AllowAnyHeader();
+                });
             });
 
             services.AddMediatR(typeof(GetPopularMoviesQuery).GetTypeInfo().Assembly);
