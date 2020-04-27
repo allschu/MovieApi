@@ -75,9 +75,18 @@ namespace Services.Movie
             return JsonConvert.DeserializeObject<MovieResultSelection>(content);
         }
 
-        public Task<MovieSelection[]> GetTrendingMovies()
+        public async Task<MovieTrendingResultSelection> GetTrendingMovies()
         {
-            throw new NotImplementedException();
+            var response = await Client.GetAsync($"3/trending/movie/day").ConfigureAwait(false);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                // throw error / or insert circuitbreaker?
+            }
+
+            var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+            return JsonConvert.DeserializeObject<MovieTrendingResultSelection>(content);
         }
     }
 }

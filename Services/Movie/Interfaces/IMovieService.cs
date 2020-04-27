@@ -16,6 +16,6 @@ namespace Services.Movie.Interfaces
 
         public Task<MovieResultSelection> GetMovieRecommendations(int id);
 
-        public Task<MovieSelection[]> GetTrendingMovies();
+        public Task<MovieTrendingResultSelection> GetTrendingMovies();
     }
 }

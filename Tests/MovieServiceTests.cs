@@ -49,6 +49,20 @@ namespace Tests
         }
 
 
-        
+        [TestMethod]
+        public async Task GetTrendingMovieTest()
+        {
+            using var scope = serviceProvider.CreateScope();
+            var movieService = scope.ServiceProvider.GetRequiredService<IMovieService>();
+
+            Assert.IsNotNull(movieService, "IMovieService cannot be resolved by DI");
+
+            var result = await movieService.GetTrendingMovies();
+
+            Assert.IsNotNull(result, "There is no result from the populair movie service request");
+            Assert.IsNotNull(result.results, "There is no result from the populair movie service request");
+            Assert.IsTrue(result.results.Any(), "There are no values in the collections");
+
+        }
     }
 }
