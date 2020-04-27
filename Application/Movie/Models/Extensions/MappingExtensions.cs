@@ -49,5 +49,10 @@ namespace Application.Movie.Models.Extensions
                 Vote_Average = selection.vote_average
             };
         }
+
+        internal static ICollection<MovieDetailViewModel> MapToViewModel(this MovieTrendingResultSelection selection)
+        {
+            return selection.results.Select(x => x.MapToViewModel()).ToList();
+        }
     }
 }

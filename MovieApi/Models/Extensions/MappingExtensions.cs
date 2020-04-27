@@ -49,5 +49,10 @@ namespace MovieApi.Models.Extensions
         {
             return movies.Select(x => x.Map()).ToList();
         }
+
+        internal static ICollection<ViewModels.MovieDetailViewModel> Map(this ICollection<Application.Movie.Models.MovieDetailViewModel> movies)
+        {
+            return movies.Select(x => x.Map()).ToList();
+        }
     }
 }
