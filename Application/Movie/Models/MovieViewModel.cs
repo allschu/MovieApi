@@ -16,5 +16,6 @@ namespace Application.Movie.Models
         public DateTime Release_Date { get; set; }
         public string Original_Language { get; set; }
         public string Overview { get; set; }
+        public string Poster_Path { get; set; }
     }
 }

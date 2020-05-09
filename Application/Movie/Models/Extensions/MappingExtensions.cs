@@ -46,7 +46,8 @@ namespace Application.Movie.Models.Extensions
                 Release_Date = selection.release_date,
                 Title = selection.Title,
                 Video = selection.video,
-                Vote_Average = selection.vote_average
+                Vote_Average = selection.vote_average,
+                Poster_Path = selection.poster_path
             };
         }
 

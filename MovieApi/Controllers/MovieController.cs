@@ -42,6 +42,15 @@ namespace MovieApi.Controllers
             return new GetTrendingMovieResponse(movies.Map());
         }
 
+        [HttpGet]
+        [Route("recommendations/{movieid:int}")]
+        public async Task<ActionResult<GetMovieRecommandationResponse>> GetMovieRecommendations(int movieid)
+        {
+            var movies = await _mediator.Send(new GetMovieRecommendationsQuery(movieid)).ConfigureAwait(false);
+
+            return new GetMovieRecommandationResponse(movies.Map());
+        }
+
         [HttpPost]
         [Route("popular")]
         public async Task<ActionResult<GetMovieResponse>> GetMovies()

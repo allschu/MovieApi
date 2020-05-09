@@ -41,7 +41,8 @@ namespace MovieApi.Models.Extensions
                 Release_Date = movie.Release_Date.ToShortDateString(),
                 Title = movie.Title,
                 Video = movie.Video,
-                Vote_Average = movie.Vote_Average
+                Vote_Average = movie.Vote_Average,
+                Poster_Path = movie.Poster_Path
             };
         }
 
