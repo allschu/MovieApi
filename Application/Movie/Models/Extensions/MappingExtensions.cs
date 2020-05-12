@@ -33,6 +33,12 @@ namespace Application.Movie.Models.Extensions
             return selection.results.Select(x => x.MapToViewModel()).ToList();
         }
 
+        internal static ICollection<MovieViewModel> MapToViewModel(this MovieSearchResultSelection selection)
+        {
+            return selection.results.Select(x => x.MapToViewModel()).ToList();
+        }
+
+
         internal static MovieViewModel MapToViewModel(this MovieSelection selection)
         {
             return new MovieViewModel

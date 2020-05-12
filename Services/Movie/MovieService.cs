@@ -88,5 +88,19 @@ namespace Services.Movie
 
             return JsonConvert.DeserializeObject<MovieTrendingResultSelection>(content);
         }
+
+        public async Task<MovieSearchResultSelection> Search(string query, int page)
+        {
+            var response = await Client.GetAsync($"3/search/movie?query={query}&page={page}&include_adult=false").ConfigureAwait(false);
+            
+            if (!response.IsSuccessStatusCode)
+            {
+                // throw error / or insert circuitbreaker?
+            }
+
+            var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+            return JsonConvert.DeserializeObject<MovieSearchResultSelection>(content);
+        }
     }
 }

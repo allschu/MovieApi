@@ -82,6 +82,18 @@ namespace Tests
             Assert.IsTrue(result.Any());
         }
 
+        [TestMethod]
+        public async Task GetMovieSearchQueryTest()
+        {
+            using var scope = serviceProvider.CreateScope();
+            var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
 
+            Assert.IsNotNull(mediator, "mediator cannot be resolved by DI");
+
+            var result = await mediator.Send(new GetMovieSearchQuery(new GetMovieSearchFilter("titanic", 1))).ConfigureAwait(false);
+
+            Assert.IsNotNull(result, "there is no result for movie search");
+            Assert.IsTrue(result.Results.Any());
+        }
     }
 }

@@ -34,6 +34,16 @@ namespace MovieApi.Controllers
         }
 
         [HttpGet]
+        [Route("search")]
+        public async Task<ActionResult<GetMovieResponse>> Search([FromQuery] string query, [FromQuery] int page)
+        {
+            var movies = await _mediator.Send(new GetMovieSearchQuery(new GetMovieSearchFilter(query, page))).ConfigureAwait(false);
+
+            return new GetMovieResponse(movies.Results.Map(), movies.Total_Results);
+        }
+
+
+        [HttpGet]
         [Route("trending")]
         public async Task<ActionResult<GetTrendingMovieResponse>> GetTrendingMovies()
         {

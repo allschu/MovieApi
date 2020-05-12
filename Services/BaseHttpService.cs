@@ -6,7 +6,7 @@ namespace Services
 {
     public class BaseHttpService
     {
-        public HttpClient Client { get; private set; }
+        public HttpClient Client { get; }
 
         public BaseHttpService(HttpClient httpClient)
         {
