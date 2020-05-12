@@ -38,7 +38,7 @@ namespace MovieApi.Models.Extensions
                 Original_Language = movie.Original_Language,
                 Overview = movie.Overview,
                 Popularity = movie.Popularity,
-                Release_Date = movie.Release_Date.ToShortDateString(),
+                Release_Date = movie.Release_Date?.ToShortDateString(),
                 Title = movie.Title,
                 Video = movie.Video,
                 Vote_Average = movie.Vote_Average,

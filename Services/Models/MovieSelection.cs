@@ -14,7 +14,7 @@ namespace Services.Models
         public bool adult { get; set; }
         public bool video { get; set; }
         public string original_title { get; set; }
-        public DateTime release_date { get; set; }
+        public DateTime? release_date { get; set; }
         public string original_language { get; set; }
         public string overview { get; set; }
         public string poster_path { get; set; }
