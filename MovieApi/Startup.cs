@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Application.Movie.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -49,6 +50,16 @@ namespace MovieApi
                 });
             });
 
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                // base-address of your identityserver
+                options.Authority = "https://allard-movie-identityserver.azurewebsites.net";
+
+                // name of the API resource
+                options.Audience = "api1";
+            });
+
             services.AddMediatR(typeof(GetPopularMoviesQuery).GetTypeInfo().Assembly);
             services.AddHttpClient<IMovieService, MovieService>();
             services.AddHttpClient<ICastService, CastService>();
@@ -81,6 +92,7 @@ namespace MovieApi
             });
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

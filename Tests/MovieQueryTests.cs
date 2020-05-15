@@ -92,6 +92,9 @@ namespace Tests
 
             var result = await mediator.Send(new GetMovieSearchQuery(new GetMovieSearchFilter("sonic", 1))).ConfigureAwait(false);
 
+            var result2 = await mediator.Send(new GetMovieSearchQuery(new GetMovieSearchFilter("airforce one", 1))).ConfigureAwait(false);
+
+
             Assert.IsNotNull(result, "there is no result for movie search");
             Assert.IsTrue(result.Results.Any());
         }
