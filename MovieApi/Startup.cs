@@ -54,7 +54,7 @@ namespace MovieApi
             .AddJwtBearer(options =>
             {
                 // base-address of your identityserver
-                options.Authority = "https://allard-movie-identityserver.azurewebsites.net";
+                options.Authority = "https://allschu-idp.azurewebsites.net";
 
                 // name of the API resource
                 options.Audience = "api1";
