@@ -67,8 +67,6 @@ namespace MovieApi.Controllers
         [Route("popular")]
         public async Task<ActionResult<GetMovieResponse>> GetMovies()
         {
-            var pageSize = 20;
-            
             var movies = await _mediator.Send(new GetPopularMoviesQuery()).ConfigureAwait(false);
 
             return new GetMovieResponse(movies.Results.Map(), movies.Total_Results);
