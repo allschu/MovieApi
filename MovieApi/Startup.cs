@@ -1,13 +1,13 @@
 using System.Reflection;
 using Application.Movie.Queries;
 using MediatR;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Serilog;
 using Services.Cast;
 using Services.Cast.Interfaces;
 using Services.Movie;
@@ -26,6 +26,11 @@ namespace MovieApi
                .AddEnvironmentVariables();
 
             this.Configuration = builder.Build();
+
+            Log.Logger = new LoggerConfiguration()
+            .WriteTo.Console()
+            .ReadFrom.Configuration(Configuration)
+            .CreateLogger();
         }
 
         public IConfiguration Configuration { get; }
@@ -86,7 +91,7 @@ namespace MovieApi
             app.UseRouting();
 
             //app.UseAuthentication();
-           // app.UseAuthorization();
+            // app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

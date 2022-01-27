@@ -4,15 +4,19 @@ using Services.Models;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using System;
 
 namespace Services.Movie
 {
     public class MovieService : BaseHttpService, IMovieService
     {
-        public MovieService(HttpClient client, IConfiguration configuration) 
+        private readonly ILogger<MovieService> _logger;
+
+        public MovieService(HttpClient client, IConfiguration configuration, ILogger<MovieService> logger) 
             : base(client, configuration)
         {
-
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
         
         public async Task<MovieResultSelection> GetPopularMovies(int page)
@@ -21,7 +25,7 @@ namespace Services.Movie
 
             if (!response.IsSuccessStatusCode)
             {
-                // throw error / or insert circuitbreaker?
+                _logger.LogError($"HTTP ERROR: {response.ReasonPhrase}");
             }
 
             var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
@@ -35,7 +39,7 @@ namespace Services.Movie
 
             if (!response.IsSuccessStatusCode)
             {
-                // throw error / or insert circuitbreaker?
+                _logger.LogError($"HTTP ERROR: {response.ReasonPhrase}");
             }
 
             var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
@@ -49,7 +53,7 @@ namespace Services.Movie
 
             if (!response.IsSuccessStatusCode)
             {
-                // throw error / or insert circuitbreaker?
+                _logger.LogError($"HTTP ERROR: {response.ReasonPhrase}");
             }
 
             var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
@@ -63,7 +67,7 @@ namespace Services.Movie
 
             if (!response.IsSuccessStatusCode)
             {
-                // throw error / or insert circuitbreaker?
+                _logger.LogError($"HTTP ERROR: {response.ReasonPhrase}");
             }
 
             var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
@@ -77,7 +81,7 @@ namespace Services.Movie
 
             if (!response.IsSuccessStatusCode)
             {
-                // throw error / or insert circuitbreaker?
+                _logger.LogError($"HTTP ERROR: {response.ReasonPhrase}");
             }
 
             var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
@@ -91,7 +95,7 @@ namespace Services.Movie
             
             if (!response.IsSuccessStatusCode)
             {
-                // throw error / or insert circuitbreaker?
+                _logger.LogError($"HTTP ERROR: {response.ReasonPhrase}");
             }
 
             var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
