@@ -27,6 +27,11 @@ namespace MovieApi
                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                .AddEnvironmentVariables();
 
+            if (env.IsDevelopment())
+            {
+                builder.AddUserSecrets<Program>();
+            }
+
             this.Configuration = builder.Build();
 
             Log.Logger = new LoggerConfiguration()
@@ -41,7 +46,7 @@ namespace MovieApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<MovieDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MovieDatabase")));
+            services.AddDbContext<MovieDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MovieDatabase"), opt => opt.MigrationsAssembly("Infrastructure")));
             services.AddCors(x =>
             {
                 x.AddDefaultPolicy(c =>
