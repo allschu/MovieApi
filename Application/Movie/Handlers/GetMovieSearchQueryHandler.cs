@@ -2,11 +2,8 @@
 using Application.Movie.Models.Extensions;
 using Application.Movie.Queries;
 using MediatR;
-using Services.Models;
 using Services.Movie.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 

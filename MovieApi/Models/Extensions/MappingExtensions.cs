@@ -1,9 +1,6 @@
-﻿using Application.Movie.Models;
-using MovieApi.Models.ViewModels;
-using System;
+﻿using MovieApi.Models.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace MovieApi.Models.Extensions
 {

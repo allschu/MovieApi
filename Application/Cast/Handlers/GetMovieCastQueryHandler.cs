@@ -3,10 +3,8 @@ using Application.Cast.Models.Extensions;
 using Application.Cast.Queries;
 using MediatR;
 using Services.Cast.Interfaces;
-using Services.Movie.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 

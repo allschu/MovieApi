@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Net.Http;
-using Microsoft.Extensions.Configuration;
+﻿using System.Net.Http;
 using Services.Movie.Interfaces;
 using Services.Models;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using System.Net.Http.Headers;
 
 namespace Services.Movie
 {

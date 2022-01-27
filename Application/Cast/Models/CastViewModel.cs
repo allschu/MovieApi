@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Application.Cast.Models
+﻿namespace Application.Cast.Models
 {
     public class CastViewModel
     {

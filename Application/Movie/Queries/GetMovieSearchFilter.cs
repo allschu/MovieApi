@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Application.Movie.Queries
+﻿namespace Application.Movie.Queries
 {
     public class GetMovieSearchFilter
     {
