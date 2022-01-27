@@ -3,13 +3,14 @@ using Services.Movie.Interfaces;
 using Services.Models;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Microsoft.Extensions.Configuration;
 
 namespace Services.Movie
 {
     public class MovieService : BaseHttpService, IMovieService
     {
-        public MovieService(HttpClient client) 
-            : base(client)
+        public MovieService(HttpClient client, IConfiguration configuration) 
+            : base(client, configuration)
         {
 
         }

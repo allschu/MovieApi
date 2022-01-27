@@ -43,15 +43,15 @@ namespace MovieApi
                 });
             });
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(options =>
-            {
-                // base-address of your identityserver
-                options.Authority = "https://allschu-idp.azurewebsites.net";
+            //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            //.AddJwtBearer(options =>
+            //{
+            //    // base-address of your identityserver
+            //    options.Authority = "https://allschu-idp.azurewebsites.net";
 
-                // name of the API resource
-                options.Audience = "api1";
-            });
+            //    // name of the API resource
+            //    options.Audience = "api1";
+            //});
 
             services.AddMediatR(typeof(GetPopularMoviesQuery).GetTypeInfo().Assembly);
             services.AddHttpClient<IMovieService, MovieService>();

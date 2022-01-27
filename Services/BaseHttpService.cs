@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 
@@ -8,13 +9,14 @@ namespace Services
     {
         public HttpClient Client { get; }
 
-        public BaseHttpService(HttpClient httpClient)
+        public BaseHttpService(HttpClient httpClient, IConfiguration configuration)
         {
             httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+            configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
 
             httpClient.BaseAddress = new Uri("https://api.themoviedb.org/");
-            httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzOWM1MTlmMjA2MTc1NjBkNDY3Y2U5NTA4NzcyM2UyMSIsInN1YiI6IjVlNjM0OTU1MjJhZjNlMDAxM2RlZDEzYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.D53nmvOUFC6BwoO6OJriURGHD2cjgovODr4k_JD3p1I");
-            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));//ACCEPT header
+            httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer { configuration["MovieApiBearer"] }");
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             Client = httpClient;
         }

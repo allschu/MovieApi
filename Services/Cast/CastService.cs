@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using Services.Cast.Interfaces;
 using Services.Models;
 using System.Net.Http;
@@ -8,8 +9,8 @@ namespace Services.Cast
 {
     public class CastService : BaseHttpService, ICastService
     {
-        public CastService(HttpClient httpClient) 
-            : base(httpClient)
+        public CastService(HttpClient httpClient, IConfiguration configuration) 
+            : base(httpClient, configuration)
         {
 
         }
