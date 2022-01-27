@@ -48,16 +48,6 @@ namespace MovieApi
                 });
             });
 
-            //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            //.AddJwtBearer(options =>
-            //{
-            //    // base-address of your identityserver
-            //    options.Authority = "https://allschu-idp.azurewebsites.net";
-
-            //    // name of the API resource
-            //    options.Audience = "api1";
-            //});
-
             services.AddMediatR(typeof(GetPopularMoviesQuery).GetTypeInfo().Assembly);
             services.AddHttpClient<IMovieService, MovieService>();
             services.AddHttpClient<ICastService, CastService>();
@@ -89,9 +79,6 @@ namespace MovieApi
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
             app.UseRouting();
-
-            //app.UseAuthentication();
-            // app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
