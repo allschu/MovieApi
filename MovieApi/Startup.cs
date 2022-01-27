@@ -1,8 +1,10 @@
 using System.Reflection;
 using Application.Movie.Queries;
+using Infrastructure;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,8 +30,8 @@ namespace MovieApi
             this.Configuration = builder.Build();
 
             Log.Logger = new LoggerConfiguration()
-            .WriteTo.Console()
-            .ReadFrom.Configuration(Configuration)
+                .WriteTo.Console()
+                .ReadFrom.Configuration(Configuration)
             .CreateLogger();
         }
 
@@ -39,6 +41,7 @@ namespace MovieApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddDbContext<MovieDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MovieDatabase")));
             services.AddCors(x =>
             {
                 x.AddDefaultPolicy(c =>
